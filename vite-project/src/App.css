@@ -1,0 +1,54 @@
+.inputs-div {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 20px;
+}
+
+.movie-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+input,
+select {
+  padding: 10px 15px;
+}
+
+select > option {
+  padding: 10px 15px;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 20px;
+}
+
+.list-container {
+  margin-top: 30px;
+  border: 1px solid gray;
+}
+
+.list-item {
+  padding: 10px;
+}
+
+.movie-container p {
+  padding: 0px;
+  margin: 0px;
+}
+
+.ratting {
+  padding: 10px 0px 0px;
+  margin: 0px;
+}
+#root {
+  padding-top: 20px;
+}
+
+@media (max-width: 767px) {
+  .inputs-div,
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+}
