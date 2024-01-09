@@ -1,16 +1,8 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Container from "@mui/material/Container";
-import Stack from "@mui/material/Stack";
+import { movieArray } from "./utils/data";
 import "./App.css";
-
-const movieArray = [
-  { movie: "The Matrix", rating: "7", category: "Action" },
-  { movie: "The Mummi", rating: "5", category: "Action" },
-  { movie: "Focus", rating: "6", category: "Comedy" },
-  { movie: "The Lazarus Effect", rating: "6", category: "Thriller" },
-  { movie: "Everly", rating: "5", category: "Action" },
-  { movie: "Maps to the Stars", rating: "7", category: "Drama" },
-];
+import List from "./components/List.jsx";
 
 function App() {
   const [sortedData, setSortedData] = useState([]);
@@ -75,14 +67,14 @@ function App() {
     }
   }, [selectedMovie, selectedRating, selectedGenra]);
 
-  const rattingStar = (rating) => {
+  const rattingStar = useCallback((rating) => {
     let emptyS = Number(Number(10 - rating));
     console.log({ emptyS });
     const str1 = Array(Number(rating)).fill("⭐️").join("");
     const str2 = Array(emptyS).fill("☆").join("");
     // console.log(str1 + str2);
     return str1 + str2;
-  };
+  }, []);
 
   return (
     <Container className="app">
@@ -115,19 +107,7 @@ function App() {
         </select>
       </div>
       <div className="grid-container">
-        {sortedData?.length > 0 && (
-          <div className="list-container">
-            {sortedData?.map(({ movie, rating, category }, i) => (
-              <div className="list-item">
-                <div className="movie-container">
-                  <p>{movie}</p>
-                  <p style={{ color: "gray" }}>{category}</p>
-                </div>
-                <p className="ratting">{rattingStar(rating)}</p>
-              </div>
-            ))}
-          </div>
-        )}
+        <List sortedData={sortedData} rattingStar={rattingStar} />
         <div></div>
         <div></div>
       </div>
